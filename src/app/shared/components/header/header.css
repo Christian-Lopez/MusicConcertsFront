@@ -1,9 +1,13 @@
 header {
-  background-color: #292d39;
+  background-color: var(--secondary-color);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
+  color: white;
+  font-family: "Segoe UI";
+  font-size: 16px;
+  margin: 0;
 }
 
 #logo-container {
@@ -38,17 +42,18 @@ input {
 
 #buttons-container {
   display: flex;
+  width: 200px;
   gap: 30px;
   padding: 20px;
   justify-content: center;
 }
 
 #login {
-  color: #ffa000;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 #register {
-  color: #e01e63;
+  color: var(--accent-color);
   text-decoration: none;
 }
