@@ -8,22 +8,22 @@ export const routes: Routes = [
   {
     path: 'home',
     pathMatch: 'full',
-    component: Home,
+    loadComponent: () => import('./home/home').then((m) => m.Home),
   },
   {
     path: 'login',
     pathMatch: 'full',
-    component: Login,
+    loadComponent: () => import('./login/login').then((m) => m.Login),
   },
   {
     path: 'register',
     pathMatch: 'full',
-    component: Register,
+    loadComponent: () => import('./register/register').then((m) => m.Register),
   },
   {
     path: 'forgot-password',
     pathMatch: 'full',
-    component: ForgotPassword,
+    loadComponent: () => import('./forgot-password/forgot-password').then((m) => m.ForgotPassword),
   },
   {
     path: '',
