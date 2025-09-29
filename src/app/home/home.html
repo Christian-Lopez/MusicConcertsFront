@@ -1,4 +1,28 @@
 <app-header></app-header>
-
+<div id="container">
+  <section id="header">
+    <mat-form-field >
+      <mat-label>Genero musical</mat-label>
+      <mat-select>
+        <mat-option [value]="0">Todos</mat-option>
+        <mat-option [value]="1">Rock</mat-option>
+        <mat-option [value]="2">Pop</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div id="title">
+      <span>Selecciona tu genero musical favorito</span>
+    </div>
+  </section>
+  <section id="cards">
+    <app-concert-card></app-concert-card>
+    <app-concert-card></app-concert-card>
+    <app-concert-card></app-concert-card>
+    <app-concert-card></app-concert-card>
+    <app-concert-card></app-concert-card>
+    <app-concert-card></app-concert-card>
+    <app-concert-card></app-concert-card>
+    <app-concert-card></app-concert-card>
+  </section>
+</div>
 <app-footer></app-footer>
 

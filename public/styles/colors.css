@@ -13,16 +13,25 @@
   --mdc-outlined-text-field-hover-outline-color: var(--primary-color);
 
   /* Override material outlined select field colors */
-  --mat-select-enabled-trigger-text-color: white;
+  /* --mat-select-enabled-trigger-text-color: white; */
   --mat-option-label-text-color: var(--primary-color);
   --mat-select-panel-background-color: var(--secondary-color);
-  --mat-option-selected-state-label-text-color: white;
+  --mat-option-selected-state-label-text-color: var(--accent-color);
   --mat-select-enabled-arrow-color: var(--primary-color);
   --mat-select-focused-arrow-color: white;
   --mdc-filled-text-field-container-color: var(--secondary-color);
   --mdc-filled-text-field-focus-label-text-color: var(--primary-color);
   --mdc-filled-text-field-label-text-color: var(--primary-color);
   --mdc-filled-text-field-focus-active-indicator-color: var(--accent-color);
+  /* added by ChrisL */
+  /* Text color of selected option */
+  --mat-select-enabled-trigger-text-color: var(--primary-color);
+  /* Background color of selected option */
+  /* --mat-option-selected-state-layer-color: red; */
+  /* background color default form option */
+  --mat-form-field-filled-container-color: var(--secondary-color);
+  /* label text color */
+  --mat-form-field-filled-label-text-color: var(--primary-color);
 }
 
 /*  Override material raised button colors */
