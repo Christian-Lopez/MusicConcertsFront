@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Header } from '../shared/components/header/header';
 import { Footer } from '../shared/components/footer/footer';
 import { MatSelectModule } from '@angular/material/select';
 import { ConcertCard } from './concert-card/concert-card';
+import { HomeService } from './home-service';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { ConcertCard } from './concert-card/concert-card';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
+  homeService  = inject(HomeService);
   ngOnInit() :void {
     console.log('Home component initialized');
     // Example of fetching data from an API
@@ -23,5 +25,8 @@ export class Home implements OnInit {
     //     console.error('Error fetching concerts data:', error);
     //   });
     //Using httpClient
+    this.homeService.getHome().subscribe((res)=>{
+      console.log(res);
+    });
   }
 }
