@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
     ReactiveFormsModule,
     MatButtonModule,
     RouterLink,
-  ],
+],
   templateUrl: './forgot-password-form.html',
   styleUrl: './forgot-password-form.css',
 })
