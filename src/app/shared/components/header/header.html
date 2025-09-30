@@ -1,13 +1,13 @@
 <header class="box-shadow">
-  <div id="logo-container">
+  <div id="logo-container" routerLink="/home">
     <img id="logo" src="/images/logo.png" alt="logo" />
     <h1 id="title">Music Events</h1>
   </div>
-  <div id="input-container">
+  <div id="input-container" [ngClass]="{ hidden: showLogoOnly }">
     <input id="search" type="text" placeholder="Buscar..." />
   </div>
-  <div id="buttons-container">
-    <a id="login" href="#" routerLink="/login" class="button">Login</a>
-    <a id="register" href="#" routerLink="/register" class="button">Register</a>
+  <div id="buttons-container" [ngClass]="{ hidden: showLogoOnly }">
+    <a id="login" routerLink="/login" routerLink="/login" class="button">Login</a>
+    <a id="register" routerLink="/register" routerLink="/register" class="button">Register</a>
   </div>
 </header>

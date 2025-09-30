@@ -1,0 +1,50 @@
+<div class="main-container box-shadow">
+  <div class="form-container">
+    <span class="title"> Register </span>
+
+    <form>
+      <mat-form-field class="first-names" appearance="outline">
+        <mat-label>First Names</mat-label>
+        <input type="text" matInput />
+      </mat-form-field>
+      <mat-form-field class="last-names" appearance="outline">
+        <mat-label>Last Names</mat-label>
+        <input type="text" matInput />
+      </mat-form-field>
+      <mat-form-field class="email" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput />
+      </mat-form-field>
+      <mat-form-field class="age" appearance="outline">
+        <mat-label>Age</mat-label>
+        <input type="number" matInput />
+      </mat-form-field>
+      <mat-form-field class="document-type" appearance="outline">
+        <mat-label>Document Type</mat-label>
+        <mat-select>
+          <mat-option value="0">DNI</mat-option>
+          <mat-option value="1">CE</mat-option>
+          <mat-option value="2">PASAPORTE</mat-option>
+          <mat-option value="3">OTROS</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="document-number" appearance="outline">
+        <mat-label>Document Number</mat-label>
+        <input type="text" matInput />
+      </mat-form-field>
+      <mat-form-field class="password" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput />
+      </mat-form-field>
+      <mat-form-field class="confirm-password" appearance="outline">
+        <mat-label>Repeat Password</mat-label>
+        <input type="password" matInput />
+      </mat-form-field>
+      <button mat-raised-button color="primary">REGISTER</button>
+      <div class="login">
+        <span>If you already have an account <a routerLink="/login">log in</a></span>
+      </div>
+    </form>
+  </div>
+</div>
