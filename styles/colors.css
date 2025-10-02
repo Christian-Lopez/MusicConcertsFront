@@ -1,0 +1,85 @@
+:root {
+  --primary-color: #ffa000;
+  --secondary-color: #292d39;
+  --accent-color: #e91e63;
+  --text-color: #566573;
+
+  /* Override material outlined text field colors */
+  /* --mdc-outlined-text-field-input-text-color: white;
+  --mdc-outlined-text-field-label-text-color: var(--primary-color);
+  --mdc-outlined-text-field-focus-label-text-color: var(--primary-color);
+  --mdc-outlined-text-field-outline-color: var(--primary-color);
+  --mdc-outlined-text-field-focus-outline-color: var(--primary-color);
+  --mdc-outlined-text-field-hover-outline-color: var(--primary-color); */
+
+  /* Override material outlined select field colors */
+  
+  /* --mat-option-label-text-color: var(--primary-color);
+  
+  --mat-option-selected-state-label-text-color: var(--accent-color);
+  --mat-select-enabled-arrow-color: var(--primary-color);
+  --mat-select-focused-arrow-color: white;
+  --mdc-filled-text-field-container-color: var(--secondary-color);
+  --mdc-filled-text-field-focus-label-text-color: var(--primary-color);
+  --mdc-filled-text-field-label-text-color: var(--primary-color);
+  --mdc-filled-text-field-focus-active-indicator-color: var(--accent-color); */
+
+
+  /* added by ChrisL */  
+  /* Color text selected option */
+  --mat-select-enabled-trigger-text-color: var(--primary-color);
+  /* primary color of theme */
+  --mat-sys-primary: var(--primary-color);
+  /* background color default form option */
+  --mat-form-field-filled-container-color: var(--secondary-color);
+  /* Color of text of select options */
+  --mat-option-label-text-color: var(--primary-color);
+  /* background color panel select  */
+  --mat-select-panel-background-color: var(--secondary-color);
+  /* Color of arrow in select */
+  --mat-select-enabled-arrow-color: var(--primary-color);
+  /* Color of focused arrow in select */
+  --mat-select-focused-arrow-color: white;
+  /* Color background of selected option */
+  --mat-option-selected-state-label-text-color: var(--accent-color);
+  /* --mat-sys-on-surface : white; */
+  --mdc-selected-item-text-color: white;
+} 
+
+/*  Override material raised button colors */
+.mat-mdc-raised-button:not(:disabled).mat-primary {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+.mat-mdc-raised-button:not(:disabled).mat-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.mat-mdc-raised-button:not(:disabled).mat-accent {
+  background-color: var(--accent-color);
+}
+
+
+/*  Override material select check icon color */
+/* .mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after {
+  color: white !important;
+} */
+
+
+/* Added by ChrisL */
+.form-label-color {
+  color: var(--primary-color);
+}
+.form-input-color {
+  /* color: var(--primary-color) !important; */
+  color: white !important;
+}
+
+.mat-mdc-select-value {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:white !important;
+}
