@@ -2,46 +2,70 @@
   <div class="form-container">
     <span class="title"> Register </span>
 
-    <form>
+    <form [formGroup]="registerForm">
       <mat-form-field class="first-names" appearance="outline">
-        <mat-label class="form-label-color ">First Names</mat-label>
-        <input type="text" class="form-input-color" matInput />
+        <mat-label class="form-label-color">First Names</mat-label>
+        <input type="text" class="form-input-color" matInput formControlName="name" />
+        <mat-error>This field is required</mat-error>
       </mat-form-field>
       <mat-form-field class="last-names" appearance="outline">
         <mat-label class="form-label-color">Last Names</mat-label>
-        <input type="text" class="form-input-color" matInput />
+        <input type="text" class="form-input-color" matInput formControlName="lastName" />
+        <mat-error>This field is required</mat-error>
       </mat-form-field>
       <mat-form-field class="email" appearance="outline">
         <mat-label class="form-label-color">Email</mat-label>
-        <input type="email" class="form-input-color" matInput />
+        <input type="email" class="form-input-color" matInput formControlName="email" />
+        @if(registerForm.controls.email.hasError("required")) {
+        <mat-error>This field is required</mat-error>
+        } @if(registerForm.controls.email.hasError("email")) {
+        <mat-error>Enter a valid email</mat-error>
+        }
       </mat-form-field>
       <mat-form-field class="age" appearance="outline">
         <mat-label class="form-label-color">Age</mat-label>
-        <input type="number" class="form-input-color" matInput />
+        <input type="number" class="form-input-color" matInput formControlName="age" />
+        <mat-error>This field is required</mat-error>
       </mat-form-field>
       <mat-form-field class="document-type" appearance="outline">
         <mat-label class="form-label-color">Document Type</mat-label>
-        <mat-select>
-          <mat-option value="0">DNI</mat-option>
-          <mat-option value="1">CE</mat-option>
+        <mat-select formControlName="documentType">
+          <mat-option value="0">DUI</mat-option>
+          <!-- <mat-option value="1">CE</mat-option> -->
           <mat-option value="2">PASAPORTE</mat-option>
-          <mat-option value="3">OTROS</mat-option>
+          <!-- <mat-option value="3">OTROS</mat-option> -->
         </mat-select>
+        <mat-error>This field is required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="document-number" appearance="outline">
         <mat-label class="form-label-color">Document Number</mat-label>
-        <input type="text" class="form-input-color" matInput />
+        <input type="text" class="form-input-color" matInput formControlName="documentNumber" />
       </mat-form-field>
       <mat-form-field class="password" appearance="outline">
         <mat-label class="form-label-color">Password</mat-label>
-        <input type="password" class="form-input-color" matInput />
+        <input type="password" class="form-input-color" matInput formControlName="password" />
+        @if(registerForm.controls.password.hasError("required")) {
+        <mat-error>This field is required</mat-error>
+        } @if(registerForm.controls.password.hasError("minlength")) {
+        <mat-error style="padding: 2%;">Password must be at least 8 characters long</mat-error>
+        }
       </mat-form-field>
-      <mat-form-field class="confirm-password" appearance="outline">
+      <mat-form-field class="confirm-password" hideRequiredMarker="true" appearance="outline">
         <mat-label class="form-label-color">Repeat Password</mat-label>
-        <input type="password" class="form-input-color" matInput />
+        <input
+          type="password"
+          class="form-input-color"
+          matInput
+          formControlName="confirmPassword"
+        />
+        @if(registerForm.controls.password.hasError("required")) {
+        <mat-error>This field is required</mat-error>
+        } @if(registerForm.controls.password.hasError("minlength")) {
+        <mat-error>Password must be at least 8 characters long</mat-error>
+        } 
       </mat-form-field>
-      <button mat-raised-button color="primary">REGISTER</button>
+      <button mat-raised-button   (click)="register()" color="primary">REGISTER</button>
       <div class="login">
         <span>If you already have an account <a routerLink="/login">log in</a></span>
       </div>

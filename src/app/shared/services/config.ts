@@ -8,4 +8,6 @@ export class Config {
   getBaseUrl(): string {
     return this.baseUrl;
   }
+
+  
 }

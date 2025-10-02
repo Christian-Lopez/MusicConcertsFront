@@ -19,6 +19,7 @@ export class HomeService {
         console.error('Error occurred while fetching home data:', err);
         throw err;
       })
+      
     );
   }
 }
