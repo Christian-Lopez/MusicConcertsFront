@@ -1,13 +1,15 @@
 .main-container {
-  width: 300px;
-  height: 820px;
+  width: 350px;
+  height: auto;
   background-color: var(--secondary-color);
   border-radius: 8px;
+  
 
   & .form-container {
     width: 100%;
     padding-top: 36px;
     text-align: center;
+    margin-bottom: 10%;
     & .title {
       color: var(--primary-color);
       font-weight: 500;
@@ -29,6 +31,13 @@
         & .min-length-error {
           line-height: 14px;
         }
+      }
+      & .error-label{      
+        color: var(--mat-sys-error);
+        padding-bottom: 10px;
+      }
+      & mat-error{              
+        padding-bottom: 10px;
       }
       & button {
         margin-top: 10px;

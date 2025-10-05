@@ -1,21 +1,23 @@
+
+
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 /**
  * Custom cross-field validator for password matching.
  * Checks if 'password' and 'confirmPassword' controls within a FormGroup match.
  */
-export const matchPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   // 1. Get the individual controls by their formControlName
   const password = control.get('password');
   const confirmPassword = control.get('confirmPassword');
 
-  // Guard clause: Ensure controls exist and are initialized
+  // Guard clause: Ensure controls exist
   if (!password || !confirmPassword) {
     return null;
   }
   
-  // 2. Clear any previous 'matchFailed' error before re-validation
-  // This is important so the error disappears as soon as the user corrects the text.
+  // 2. Clear previous error on confirmPassword before re-validation
+  // This is crucial to ensure the error disappears when the user fixes the mismatch.
   if (confirmPassword.errors && confirmPassword.hasError('matchFailed')) {
     confirmPassword.setErrors(null);
   }
@@ -25,11 +27,11 @@ export const matchPasswordValidator: ValidatorFn = (control: AbstractControl): V
     // If they don't match, set the custom error directly on the confirmPassword control.
     confirmPassword.setErrors({ matchFailed: true }); 
     
-    // We return null here because the error is applied to the child control.
+    // The group validator returns null because the error is applied to the child control.
     return null; 
   }
 
-  // If the values match, ensure the error is explicitly cleared on the child control.
+  // Final check to ensure the error is cleared if it was previously set and now matches.
   if (confirmPassword.hasError('matchFailed')) {
      confirmPassword.setErrors(null);
   }

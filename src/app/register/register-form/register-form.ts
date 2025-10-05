@@ -15,7 +15,7 @@ import { AuthService } from '../../shared/services/auth-service';
 import { NotificationsService } from 'angular2-notifications';
 import { RegisterRequestBody } from '../../shared/models/auth-model';
 
-import { matchPasswordValidator } from '../../shared/validators/match-password';
+import { passwordMatchValidator } from '../../shared/validators/match-password';
 
 @Component({
   selector: 'app-register-form',
@@ -45,8 +45,11 @@ export class RegisterForm {
       confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
       documentType: new FormControl('', [Validators.required]),
       documentNumber: new FormControl('', [Validators.required]),
-    },
-    { validators: matchPasswordValidator  }
+    }
+    // ,{
+    //   validators:[passwordMatchValidator]
+    // }
+    
   );
   notifications = inject(NotificationsService);
 
