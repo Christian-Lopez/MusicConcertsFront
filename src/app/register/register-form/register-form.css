@@ -39,6 +39,8 @@
       }
       & mat-error{              
         padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
       }
       & button {
         margin-top: 10px;
@@ -63,6 +65,7 @@
 .mat-mdc-raised-button[disabled], .mat-mdc-raised-button.mat-mdc-button-disabled {
   background-color: var(--primary-color);
 }
+
 /* Added by ChrisL
 .form-label-color {
   color: white;

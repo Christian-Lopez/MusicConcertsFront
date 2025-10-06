@@ -34,21 +34,21 @@ import { passwordMatchValidator } from '../../shared/validators/match-password';
 export class RegisterForm {
   authService = inject(AuthService);
   router = inject(Router);
-
+  private readonly complexPasswordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
   registerForm = new FormGroup(
     {
       name: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       age: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8),Validators.pattern(this.complexPasswordPattern)]),
       confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
       documentType: new FormControl('', [Validators.required]),
       documentNumber: new FormControl('', [Validators.required]),
     }
-    // ,{
-    //   validators:[passwordMatchValidator]
-    // }
+    ,{
+      validators:[passwordMatchValidator]
+    }
     
   );
   notifications = inject(NotificationsService);

@@ -67,8 +67,18 @@
       @if(registerForm.controls.password.hasError("required") &&
       registerForm.controls.password.touched) {
       <mat-error>This field is required</mat-error>
-      } @if(registerForm.controls.password.hasError("minlength")) {
+      } @if(registerForm.controls.password.hasError("minlength") &&
+      registerForm.controls.password.touched) {
       <mat-error>Password must be at least 8 characters long</mat-error>
+      }@if(registerForm.controls.password.hasError("pattern") &&
+      registerForm.controls.password.touched) {
+      <div>
+        <mat-error
+          >Password must contain: at least one uppercase letters, lowercase letters, numbers, and a
+          special character          
+        </mat-error>
+      </div>
+
       }
       <mat-form-field class="confirm-password" appearance="outline">
         <mat-label class="form-label-color">Repeat Password</mat-label>
@@ -79,20 +89,28 @@
           formControlName="confirmPassword"
         />
       </mat-form-field>
-      @if(registerForm.controls.confirmPassword.hasError("required") &&
+      <!-- @if(registerForm.controls.confirmPassword.hasError("required") &&
       registerForm.controls.confirmPassword.touched) {
         <mat-error>This field is required</mat-error>
       } 
       @if(registerForm.controls.confirmPassword.hasError("minlength") ) {
         <mat-error>Password must be at least 8 characters long</mat-error>
+      } -->
+
+      @if(registerForm.controls.confirmPassword.hasError('matchFailed') &&
+      registerForm.controls.confirmPassword.touched) {
+      <mat-error>Password dont match</mat-error>
       }
 
-      <!-- @if(registerForm.controls.password.hasError('matchFailed')  ) {
-      <div class="error-label">
-        This field is required
-      </div>
-      } -->
-      <button mat-raised-button style="margin-top: 50px;" [disabled]="registerForm.invalid" (click)="register()" color="primary">REGISTER</button>
+      <button
+        mat-raised-button
+        style="margin-top: 50px"
+        [disabled]="registerForm.invalid"
+        (click)="register()"
+        color="primary"
+      >
+        REGISTER
+      </button>
       <div class="login">
         <span>If you already have an account <a routerLink="/login">log in</a></span>
       </div>
