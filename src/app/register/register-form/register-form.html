@@ -92,7 +92,7 @@
         This field is required
       </div>
       } -->
-      <button mat-raised-button style="margin-top: 50px;;" (click)="register()" color="primary">REGISTER</button>
+      <button mat-raised-button style="margin-top: 50px;" [disabled]="registerForm.invalid" (click)="register()" color="primary">REGISTER</button>
       <div class="login">
         <span>If you already have an account <a routerLink="/login">log in</a></span>
       </div>

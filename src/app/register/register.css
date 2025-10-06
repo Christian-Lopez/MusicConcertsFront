@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: 100%;
+  height: auto;
 }
 
 .title-container {
@@ -26,11 +26,11 @@
   min-height: 900px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
   /* & .form-sub-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100%;
+    align-items: center;    
+    flex-grow: 0;
   } */
 }

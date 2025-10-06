@@ -1,15 +1,16 @@
 .main-container {
-  width: 350px;
-  height: auto;
+  width: 350px;  
   background-color: var(--secondary-color);
   border-radius: 8px;
-  
+  height: auto;
+  /* flex-grow: 0;
+  overflow-y: auto; */
 
   & .form-container {
     width: 100%;
     padding-top: 36px;
     text-align: center;
-    margin-bottom: 10%;
+    margin-bottom: 10%;          
     & .title {
       color: var(--primary-color);
       font-weight: 500;
@@ -18,7 +19,7 @@
     & form {
       margin-top: 20px;
       & mat-form-field {
-        width: 240px;
+        width: auto;        
       }
       & .email {
         margin-top: 8px;
@@ -45,6 +46,7 @@
       }
       & .login {
         margin-top: 18px;
+        padding-bottom: 10%;
         font-size: 12px;
         & span {
           color: white;
@@ -57,6 +59,9 @@
       
     }
   }
+}
+.mat-mdc-raised-button[disabled], .mat-mdc-raised-button.mat-mdc-button-disabled {
+  background-color: var(--primary-color);
 }
 /* Added by ChrisL
 .form-label-color {
