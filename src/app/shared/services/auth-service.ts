@@ -56,13 +56,13 @@ export class AuthService {
     return this.http.post<LoginApiResponse>(this.config.getBaseUrl() + 'users/register', body);
   }
 
-  sendTokenToResetPassword(email: string) {
+  sendTokenToResetPassword(email: string):Observable<any> {
     return this.http.post(this.config.getBaseUrl() + 'users/RequestTokenToResetPassword', {
       email,
     });
   }
 
-  resetPassword(body: ResetPasswordRequestBody) {
+  resetPassword(body: ResetPasswordRequestBody):Observable<any> {
     return this.http.post(this.config.getBaseUrl() + 'users/ResetPassword', body);
   }
 
