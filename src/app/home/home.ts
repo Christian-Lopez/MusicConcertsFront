@@ -88,8 +88,7 @@ export class Home implements OnInit {
   )
   }
 
-  onSearchBarValueChange(value: string) {
-    this.cdr.detectChanges();    
+  onSearchBarValueChange(value: string) {        
     this.searchBarValue = value;     
     this.filterConcerts();
   }
