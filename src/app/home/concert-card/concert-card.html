@@ -1,19 +1,18 @@
-<div class="main-container box-shadow">
-  <section class="header-section">
-    <div class="date-container"><span>14 de marzo 2020</span></div>
-    <div class="time-and-category-container">
-      <span class="time">14:30 PM</span>
-      <span>Rock</span>
+<div class="container">
+  <div class="header-section">
+     <div class="date-container">
+      <span class="date"> {{ data.dateEvent }} </span>
+      <span class="time">{{ data.timeEvent }}</span>
     </div>
-  </section>
-  <section class="image-section">
-    <img
-      src="https://i.pinimg.com/1200x/d1/a5/f5/d1a5f5cf0d9bd77fff46849c1cc1da1c.jpg"
-      alt=""
-    />
-  </section>
-  <section class="description-section">
-    <span class="description"> Metallica en concierto, no te lo pierdas. </span>
-    <span class="lotacion">ESTADIO NACIONAL</span>
-  </section>
+     <div class="genre-container">
+      <span>{{ data.genre }}</span>
+    </div>
+  </div>
+  <div class="image-section">
+    <img [src]="data.imageUrl" alt="Event poster" (error)="onImageError()" />
+  </div>
+  <div class="description-section">
+    <span class="description">{{ data.description }}</span>
+    <span class="place">{{ data.place }}</span>
+  </div>
 </div>

@@ -62,9 +62,9 @@
     }
   }
 }
-.mat-mdc-raised-button[disabled], .mat-mdc-raised-button.mat-mdc-button-disabled {
+/* .mat-mdc-raised-button[disabled], .mat-mdc-raised-button.mat-mdc-button-disabled {
   background-color: var(--primary-color);
-}
+} */
 
 /* Added by ChrisL
 .form-label-color {
