@@ -15,11 +15,11 @@
       <img src="./images/logo.png" alt="logo" />
       <h1>MUSICAL EVENTS</h1>
     </div>
-    <div class="search-container">
+    <div id="search-container" class="search-container" [ngClass]="{ hidden: showLogoOnly }">
       <input type="text" placeholder="Search..." (input)="onInput($event)" />
        <!-- <input type="text" placeholder="Search..." [formControl]="searchControl" /> -->
     </div>
-    <div class="buttons-container">
+    <div id="buttons-container" class="buttons-container" [ngClass]="{ hidden: showLogoOnly }">
       <button matButton class="primary" routerLink="/login">Login</button>
       <button matButton class="accent" routerLink="/register">Register</button>
     </div>
