@@ -32,7 +32,7 @@
     <div class="event-list">
       @if (initialConcerts && initialConcerts.length > 0){
           @for (concert of concerts(); track concert.id) {
-      <app-concert-card appHighlightable [data]="concert"></app-concert-card>
+      <app-concert-card appHighlightable [data]="concert" [routerLink]="'/event-detail/' + concert.id"></app-concert-card>
       } @empty {
       <h2>No encontramos conciertos 🥲</h2>
       }

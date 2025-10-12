@@ -12,6 +12,6 @@ export class ConcertCard {
   @Input({ required: true }) data!: Concert;
 
   onImageError() {
-    this.data.imageUrl = 'https://i.pinimg.com/1200x/d1/a5/f5/d1a5f5cf0d9bd77fff46849c1cc1da1c.jpg';
+    this.data.imageURl = 'https://i.pinimg.com/1200x/d1/a5/f5/d1a5f5cf0d9bd77fff46849c1cc1da1c.jpg';
   }
 }

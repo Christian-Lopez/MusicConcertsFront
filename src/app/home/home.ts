@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { Header } from '../shared/components/header/header';
 import { Footer } from '../shared/components/footer/footer';
 import { MatSelectModule } from '@angular/material/select';
@@ -9,17 +16,25 @@ import { Genre } from '../shared/models/genre-model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Highlightable } from '../shared/directives/highlightable';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Footer, MatSelectModule, ConcertCard,MatFormFieldModule,ReactiveFormsModule,Highlightable],
+  imports: [
+    Header,
+    Footer,
+    MatSelectModule,
+    ConcertCard,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    Highlightable,
+    RouterLink,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
-    
-
- concerts: WritableSignal<Concert[]> = signal([]);
+  concerts: WritableSignal<Concert[]> = signal([]);
   genres: WritableSignal<Genre[]> = signal([]);
 
   initialConcerts: Concert[] = [];
@@ -28,9 +43,9 @@ export class Home implements OnInit {
   searchBarValue = '';
   searchGenreValue = 0;
 
-  homeService  = inject(HomeService);
-  cdr = inject(ChangeDetectorRef)
-  ngOnInit()  {
+  homeService = inject(HomeService);
+  cdr = inject(ChangeDetectorRef);
+  ngOnInit() {
     console.log('Home component initialized');
     // Example of fetching data from an API
     // fetch('https://jsonplaceholder.typicode.com/todos')
@@ -47,16 +62,16 @@ export class Home implements OnInit {
     // });
     this.homeService.getHome().subscribe((response) => {
       this.initialConcerts = response.concerts;
-      this.genres.set (response.genres);
+      this.genres.set(response.genres);
       this.concerts.set(this.initialConcerts);
-      console.log('conciertos iniciales: ', this.initialConcerts);      
+      console.log('conciertos iniciales: ', this.initialConcerts);
       this.cdr.detectChanges();
     });
 
-    this.currentGenre.valueChanges.subscribe((value: number | null) => {      
+    this.currentGenre.valueChanges.subscribe((value: number | null) => {
       this.searchGenreValue = value || 0;
       this.filterConcerts();
-    });    
+    });
   }
   filterConcerts() {
     this.filterByGenre();
@@ -67,10 +82,9 @@ export class Home implements OnInit {
     if (this.searchGenreValue === 0) {
       this.concerts.set(this.initialConcerts);
     } else {
-      this.concerts.set( this.initialConcerts.filter(
-        (concert) => concert.genreId === this.searchGenreValue
-      )
-    )
+      this.concerts.set(
+        this.initialConcerts.filter((concert) => concert.genreId === this.searchGenreValue)
+      );
     }
 
     console.log('conciertos: ', this.concerts);
@@ -81,15 +95,13 @@ export class Home implements OnInit {
 
     this.concerts.set(
       this.concerts().filter((concert) =>
-      concert.description
-        .toLowerCase()
-        .includes(this.searchBarValue.toLowerCase())
-    )
-  )
+        concert.description.toLowerCase().includes(this.searchBarValue.toLowerCase())
+      )
+    );
   }
 
-  onSearchBarValueChange(value: string) {        
-    this.searchBarValue = value;     
+  onSearchBarValueChange(value: string) {
+    this.searchBarValue = value;
     this.filterConcerts();
   }
 }

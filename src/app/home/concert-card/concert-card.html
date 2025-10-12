@@ -9,10 +9,10 @@
     </div>
   </div>
   <div class="image-section">
-    <img [src]="data.imageUrl" alt="Event poster" (error)="onImageError()" />
+    <img [src]="data.imageURl" alt="Event poster" (error)="onImageError()" />
   </div>
   <div class="description-section">
-    <span class="description">{{ data.description }}</span>
+    <span class="description">{{ data.title }}</span>
     <span class="place">{{ data.place }}</span>
   </div>
 </div>

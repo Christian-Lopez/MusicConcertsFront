@@ -8,8 +8,13 @@ export interface Concert {
   genreId: number;
   dateEvent: string;
   timeEvent: string;
-  imageUrl: string;
+  imageURl: string;
   ticketsQuantity: number;
   finalized: boolean;
   status: string;
+}
+export interface GetConcertByIdResponse {
+  data: Concert;
+  success: boolean;
+  errorMessage: string;
 }

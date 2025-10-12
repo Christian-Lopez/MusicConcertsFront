@@ -1,0 +1,29 @@
+<div class="page-container">
+  <app-header></app-header>
+  <div class="container">
+    <div class="title-container">
+      <span>Buy Tickets and enjoy!</span>
+    </div>
+    <div class="content">        
+      @if(concert){
+      <app-concert-card [data]="concert"></app-concert-card>
+      <div class="panel-container">
+        <div class="description">
+          <span>Acerca del evento</span>
+          <br /><br />
+          <p>{{ concert.description }}</p>
+        </div>
+        <div class="actions">
+          <span class="price"
+            >Precio: <span>${{ concert.unitPrice }}</span>
+          </span>
+          <button mat-raised-button color="primary" (click)="openBuyDialog()">
+            Buy Ticket
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

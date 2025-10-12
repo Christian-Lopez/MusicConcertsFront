@@ -30,4 +30,9 @@ export const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'home',
   },
+  {
+    path: 'event-detail/:id',
+    pathMatch: 'full',
+    loadComponent: () => import('./event-detail/event-detail').then((m) => m.EventDetail),
+  },
 ];
