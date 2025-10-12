@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { booleanAttribute, Component, EventEmitter, Input, input, OnInit, Output } from '@angular/core';
+import { booleanAttribute, Component, EventEmitter, inject, Input, input, OnInit, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.css',
 })
 export class Header {
+  authService = inject(AuthService);
   @Input({ transform: booleanAttribute }) showLogoOnly: boolean = false;
   searchControl = new FormControl('');
   @Output() searchValueChange = new EventEmitter<string>();

@@ -48,7 +48,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http.post<LoginApiResponse>(this.config.getBaseUrl() + 'users/login', {
       username: email,
-      password,
+      password : password,
     });
   }
 
@@ -100,10 +100,10 @@ export class AuthService {
     this.isLoggedIn.set(false);
 
     if (tokenExpired) {
-      this.notifications.warn('Token Expirado. Por favor inicia sesión');
+      this.notifications.warn('Token Expired. Please login');
       this.router.navigateByUrl('/login');
     } else {
-      this.notifications.success('Logout exitoso', 'Vuelve pronto');
+      this.notifications.success('Logout', '');
       this.router.navigateByUrl('/');
     }
   }

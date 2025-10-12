@@ -12,7 +12,7 @@
 .mat-mdc-raised-button:not(:disabled).mat-primary {
   background-color: var(--primary-color);
   color: var(--secondary-color);
-   font-weight:normal; 
+   /* font-weight:bold;  */
 }
 .mat-mdc-raised-button:not(:disabled).mat-secondary {
   background-color: var(--secondary-color);

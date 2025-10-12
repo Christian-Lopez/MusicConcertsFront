@@ -1,25 +1,36 @@
-<div class="main-container box-shadow">  
-  <div class="form-container">
-    <span class="title"> Login </span>
-
-    <form>
+<div class="content-container box-shadow">
+  <div class="card">
+    <div class="form-title-container">
+      <span>Login</span>
+    </div>
+    <form [formGroup]="loginForm">
       <mat-form-field class="email" appearance="outline">
         <mat-label class="form-label-color">Email</mat-label>
-        <input type="email" class="form-input-color" matInput />
+        <input type="email" class="form-input-color" matInput formControlName="email" />
       </mat-form-field>
+       @if(loginForm.controls.email.hasError('required') && loginForm.controls.email.touched ){
+          <mat-error>Email is required</mat-error>
+          } @if(loginForm.controls.email.hasError('email')){
+          <mat-error>Email not valid</mat-error>
+          }
       <mat-form-field class="password" appearance="outline">
         <mat-label class="form-label-color">Password</mat-label>
-        <input type="password" class="form-input-color" matInput />
+        <input type="password" class="form-input-color" matInput formControlName="password" />
       </mat-form-field>
+      @if(loginForm.controls.password.hasError('required') && loginForm.controls.password.touched){
+          <mat-error>Password is required</mat-error>
+          } @if(loginForm.controls.password.hasError('minlength')){
+          <mat-error>Password must be at least 8 characters long asdasd asdasd asdasd asd </mat-error>
+          }
       <div class="forgot-password">
-        <a routerLink="/forgot-password">Forgot your password?</a>
+        <span routerLink="/forgot-password">Forgot your password?</span>
       </div>
-      <button mat-raised-button color="primary">LOGIN</button>
+      <button mat-raised-button color="primary" (click)="login()" [disabled]="loginForm.invalid">LOGIN</button>
       <div class="register">
         <span
           >If you don't have an account
-          <a routerLink="/register">register</a></span
-        >
+          <span class="text-link" routerLink="/register">register</span>
+        </span>
       </div>
     </form>
   </div>

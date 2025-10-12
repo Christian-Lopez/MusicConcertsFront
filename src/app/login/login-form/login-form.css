@@ -1,4 +1,4 @@
-.main-container {
+/* .main-container {
   width: 300px;
   height: 400px;
   background-color: var(--secondary-color);
@@ -47,4 +47,51 @@
       }
     }
   }
-}
+} */
+ .content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .card {
+      background-color: var(--secondary-color);
+      border-radius: 8px;
+      width: 260px;
+      & .form-title-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        & span {
+          color: var(--primary-color);
+          font-weight: 500;
+        }
+      }
+      & form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & .email {
+          margin-bottom: 10px;
+        }
+        & .forgot-password {
+          color: var(--accent-color);
+          font-size: 12px;
+          margin-top: 16px;
+          margin-bottom: 10px;
+          & span {
+            cursor: pointer;
+          }
+        }
+        & .register {
+          color: white;
+          font-size: 12px;
+          margin-top: 20px;
+          margin-bottom: 30px;
+          & .text-link {
+            color: var(--accent-color);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }

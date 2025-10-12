@@ -68,12 +68,12 @@
 
 
 /* Added by ChrisL */
-/* .form-label-color {
+.form-label-color {
   color: var(--primary-color);
 }
 .form-input-color {  
   color: white !important;
-} */
+}
 
 /* .mat-mdc-select-value {
     width: 100%;

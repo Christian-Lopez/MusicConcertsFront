@@ -33,3 +33,9 @@ body {
 .hidden {
   visibility: hidden  !important;
 }  
+ mat-error{              
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+      }

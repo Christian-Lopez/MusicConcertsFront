@@ -1,27 +1,37 @@
 <header class="box-shadow">
-  <!-- <div id="logo-container" routerLink="/home">
-    <img id="logo" src="./images/logo.png" alt="logo" />
-    <h1 id="title">Music Events</h1>
-  </div>
-  <div id="input-container" [ngClass]="{ hidden: showLogoOnly }">
-    <input id="search" type="text" placeholder="Buscar..." />
-  </div>
-  <div id="buttons-container" [ngClass]="{ hidden: showLogoOnly }">
-    <a id="login" routerLink="/login" routerLink="/login" class="button">Login</a>
-    <a id="register" routerLink="/register" routerLink="/register" class="button">Register</a>
-  </div> -->
-   <div class="container">
+  <div class="container">
     <div class="logo-container" routerLink="/home">
       <img src="./images/logo.png" alt="logo" />
       <h1>MUSICAL EVENTS</h1>
     </div>
     <div id="search-container" class="search-container" [ngClass]="{ hidden: showLogoOnly }">
       <input type="text" placeholder="Search..." (input)="onInput($event)" />
-       <!-- <input type="text" placeholder="Search..." [formControl]="searchControl" /> -->
+      <!-- <input type="text" placeholder="Search..." [formControl]="searchControl" /> -->
     </div>
+    <div class="name-container">
+      <span>{{ authService.getName() + ' - ' + authService.getRole() }}</span>
+    </div>
+    @if(authService.getIsLoggedIn()){
+    <div class="buttons-container">
+      <button
+        mat-button
+        class="primary"
+        [routerLink]="authService.getRole() === 'Administrator' ? '/admin' : '/customer'"
+      >
+        MENU
+      </button>
+      <button mat-button class="primary" routerLink="/my-account">Account</button>
+      <button mat-button class="accent" (click)="authService.logout()">Logout</button>
+    </div>
+    }@else{
     <div id="buttons-container" class="buttons-container" [ngClass]="{ hidden: showLogoOnly }">
       <button matButton class="primary" routerLink="/login">Login</button>
       <button matButton class="accent" routerLink="/register">Register</button>
     </div>
+    }
+    <!-- <div id="buttons-container" class="buttons-container" [ngClass]="{ hidden: showLogoOnly }">
+      <button matButton class="primary" routerLink="/login">Login</button>
+      <button matButton class="accent" routerLink="/register">Register</button>
+    </div> -->
   </div>
 </header>
