@@ -109,10 +109,12 @@ header {
       }
     }
     & .name-container{
-      display: flex;      
-      color: white;
-      font-size: smaller;      
-      padding-left: 10px;
+       width: 50%;
+      display: flex;
+      justify-content: end;
+      & span {
+        color: white;
+      }
     }
   }
 }

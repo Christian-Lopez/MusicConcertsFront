@@ -10,14 +10,14 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { provideAnimations } from '@angular/platform-browser/animations'; 
-import { tokenExpiredInterceptor } from './app.interceptor';
+import { jwtInterceptor, tokenExpiredInterceptor  } from './app.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([tokenExpiredInterceptor])),
+    provideHttpClient(withInterceptors([tokenExpiredInterceptor,jwtInterceptor])),
     // provideAnimations(), 
     importProvidersFrom(SimpleNotificationsModule.forRoot()),
   ]

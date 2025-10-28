@@ -7,11 +7,11 @@
     <div id="search-container" class="search-container" [ngClass]="{ hidden: showLogoOnly }">
       <input type="text" placeholder="Search..." (input)="onInput($event)" />
       <!-- <input type="text" placeholder="Search..." [formControl]="searchControl" /> -->
-    </div>
-    <div class="name-container">
+    </div>    
+    @if(authService.getIsLoggedIn()){
+      <div class="name-container">
       <span>{{ authService.getName() + ' - ' + authService.getRole() }}</span>
     </div>
-    @if(authService.getIsLoggedIn()){
     <div class="buttons-container">
       <button
         mat-button

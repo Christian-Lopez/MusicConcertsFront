@@ -5,7 +5,7 @@
       <span>Buy Tickets and enjoy!</span>
     </div>
     <div class="content">        
-      @if(concert){
+      @if(isDetail()  ){
       <app-concert-card [data]="concert"></app-concert-card>
       <div class="panel-container">
         <div class="description">
@@ -15,7 +15,7 @@
         </div>
         <div class="actions">
           <span class="price"
-            >Precio: <span>${{ concert.unitPrice }}</span>
+            >Precio: <span>${{ concert.unitPrice.toFixed(2) }}</span>
           </span>
           <button mat-raised-button color="primary" (click)="openBuyDialog()">
             Buy Ticket

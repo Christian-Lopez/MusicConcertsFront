@@ -18,3 +18,8 @@ export interface GetConcertByIdResponse {
   success: boolean;
   errorMessage: string;
 }
+export interface BuyTicketsResponse {
+  data: number;
+  success: boolean;
+  errorMessage: string;
+}
