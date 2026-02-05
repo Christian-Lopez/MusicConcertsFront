@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { catchError, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { BuyTicket } from '../shared/components/buy-ticket/buy-ticket';
 
 
 @Component({
@@ -51,5 +52,9 @@ export class EventDetail implements OnInit {
       
   }
 
-  openBuyDialog() {}
+  openBuyDialog() {
+    this.matDialog.open(BuyTicket, {
+      data: this.concert,
+    });
+  }
 }
