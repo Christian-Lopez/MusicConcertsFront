@@ -6,10 +6,16 @@
   padding-top: 10px;
 }
 
-.price-info {
+.price-info, .stock-info {
   font-size: 1.1em;
   font-weight: 500;
   color: #666;
+  margin: 0;
+}
+
+.stock-info {
+    font-size: 0.9em;
+    color: #888;
 }
 
 .total-section {
@@ -21,4 +27,10 @@
 .total-section h3 {
   margin: 0;
   color: #333;
+}
+
+.error-msg {
+    color: #f44336;
+    font-size: 0.85em;
+    margin-top: -10px;
 }

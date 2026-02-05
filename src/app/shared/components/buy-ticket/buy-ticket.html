@@ -2,11 +2,18 @@
 <mat-dialog-content>
   <div class="buy-container">
     <p class="price-info">Unit Price: ${{data.unitPrice}}</p>
+    <p class="stock-info">Available: {{data.ticketsQuantity}}</p>
     
     <mat-form-field appearance="fill">
       <mat-label>Quantity</mat-label>
-      <input matInput type="number" min="1" [(ngModel)]="quantity" (ngModelChange)="updateTotal()">
+      <input matInput type="number" min="1" [max]="data.ticketsQuantity" 
+             [ngModel]="quantity()" (ngModelChange)="quantity.set($event)"
+             [disabled]="isBusy()">
     </mat-form-field>
+    
+    @if (quantity() > data.ticketsQuantity) {
+        <div class="error-msg">Cannot buy more than available tickets.</div>
+    }
 
     <div class="total-section">
       <h3>Total: ${{totalPrice() | number:'1.2-2'}}</h3>
@@ -14,6 +21,13 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="close()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="buy()" [disabled]="quantity < 1">Confirm Purchase</button>
+  <button mat-button (click)="close()" [disabled]="isBusy()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="buy()" 
+          [disabled]="!isValidConfirmation()">
+      @if (isBusy()) {
+          Processing...
+      } @else {
+          Confirm Purchase
+      }
+  </button>
 </mat-dialog-actions>

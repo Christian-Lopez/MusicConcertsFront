@@ -1,4 +1,4 @@
-import { Component, Inject, inject, signal } from '@angular/core';
+import { Component, Inject, inject, signal, computed } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { Concert } from '../../models/concert-model';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,7 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConcertService } from '../../services/concert-service';
-import { catchError, of } from 'rxjs';
+import { catchError, finalize, of } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-buy-ticket',
@@ -17,7 +18,8 @@ import { catchError, of } from 'rxjs';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   templateUrl: './buy-ticket.html',
   styleUrl: './buy-ticket.css',
@@ -26,35 +28,44 @@ import { catchError, of } from 'rxjs';
 export class BuyTicket {
   concertService = inject(ConcertService);
   dialogRef = inject(MatDialogRef<BuyTicket>);
+  snackBar = inject(MatSnackBar);
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: Concert) {}
 
-  quantity: number = 1;
-  totalPrice = signal(0);
+  quantity = signal(1);
+  isBusy = signal(false);
+  
+  totalPrice = computed(() => {
+    return this.data.unitPrice * this.quantity();
+  });
 
-  updateTotal() {
-    this.totalPrice.set(this.data.unitPrice * this.quantity);
-  }
-
-  ngOnInit() {
-    this.updateTotal();
-  }
+  isValidConfirmation = computed(() => {
+    const q = this.quantity();
+    return q > 0 && q <= this.data.ticketsQuantity && !this.isBusy();
+  });
 
   buy() {
-    this.concertService.buyTickets(this.data.id.toString(), this.quantity)
+    if (this.quantity() > this.data.ticketsQuantity) {
+        this.snackBar.open(`Only ${this.data.ticketsQuantity} tickets available.`, 'Close', { duration: 3000 });
+        return;
+    }
+
+    this.isBusy.set(true);
+    this.concertService.buyTickets(this.data.id.toString(), this.quantity())
       .pipe(
         catchError(err => {
-          alert('Error processing purchase');
           console.error(err);
+          this.snackBar.open(err.error?.errorMessage || 'Error processing purchase', 'Close', { duration: 3000 });
           return of(null);
-        })
+        }),
+        finalize(() => this.isBusy.set(false))
       )
       .subscribe(res => {
         if (res && res.success) {
-          alert('Tickets purchased successfully!');
-          this.dialogRef.close(true); // Close with success
+          this.snackBar.open('Tickets purchased successfully!', 'Close', { duration: 3000 });
+          this.dialogRef.close(true);
         } else if (res) {
-            alert(res.errorMessage || 'Purchase failed');
+          this.snackBar.open(res.errorMessage || 'Purchase failed', 'Close', { duration: 3000 });
         }
       });
   }
