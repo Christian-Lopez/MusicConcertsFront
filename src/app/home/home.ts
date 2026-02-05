@@ -1,10 +1,9 @@
 import {
-  ChangeDetectorRef,
   Component,
   inject,
   OnInit,
   signal,
-  WritableSignal,
+  computed,
 } from '@angular/core';
 import { Header } from '../shared/components/header/header';
 import { Footer } from '../shared/components/footer/footer';
@@ -34,74 +33,47 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
-  concerts: WritableSignal<Concert[]> = signal([]);
-  genres: WritableSignal<Genre[]> = signal([]);
+  homeService = inject(HomeService);
 
-  initialConcerts: Concert[] = [];
+  // State Signals
+  sourceConcerts = signal<Concert[]>([]);
+  genres = signal<Genre[]>([]);
+  
+  // Filter Signals
+  searchQuery = signal('');
+  selectedGenreId = signal(0);
+  
+  // Computed State
+  concerts = computed(() => {
+    const query = this.searchQuery().toLowerCase();
+    const genreId = this.selectedGenreId();
+    
+    return this.sourceConcerts().filter(concert => {
+      const matchesGenre = genreId === 0 || concert.genreId === genreId;
+      const matchesSearch = !query || 
+                            concert.description.toLowerCase().includes(query) || 
+                            concert.title.toLowerCase().includes(query);
+      return matchesGenre && matchesSearch;
+    });
+  });
 
   currentGenre = new FormControl(0);
-  searchBarValue = '';
-  searchGenreValue = 0;
 
-  homeService = inject(HomeService);
-  cdr = inject(ChangeDetectorRef);
   ngOnInit() {
     console.log('Home component initialized');
-    // Example of fetching data from an API
-    // fetch('https://jsonplaceholder.typicode.com/todos')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log('Concerts data:', data);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching concerts data:', error);
-    //   });
-    //Using httpClient
-    // this.homeService.getHome().subscribe((res)=>{
-    //   console.log(res);
-    // });
+    
     this.homeService.getHome().subscribe((response) => {
-      this.initialConcerts = response.concerts;
+      this.sourceConcerts.set(response.concerts);
       this.genres.set(response.genres);
-      this.concerts.set(this.initialConcerts);
-      console.log('conciertos iniciales: ', this.initialConcerts);
-      this.cdr.detectChanges();
+      console.log('Initial concerts loaded:', response.concerts);
     });
 
-    this.currentGenre.valueChanges.subscribe((value: number | null) => {
-      this.searchGenreValue = value || 0;
-      this.filterConcerts();
+    this.currentGenre.valueChanges.subscribe((value) => {
+      this.selectedGenreId.set(value || 0);
     });
-  }
-  filterConcerts() {
-    this.filterByGenre();
-    this.filterByDescription();
-  }
-
-  filterByGenre() {
-    if (this.searchGenreValue === 0) {
-      this.concerts.set(this.initialConcerts);
-    } else {
-      this.concerts.set(
-        this.initialConcerts.filter((concert) => concert.genreId === this.searchGenreValue)
-      );
-    }
-
-    console.log('conciertos: ', this.concerts);
-  }
-
-  filterByDescription() {
-    if (!this.searchBarValue) return;
-
-    this.concerts.set(
-      this.concerts().filter((concert) =>
-        concert.description.toLowerCase().includes(this.searchBarValue.toLowerCase())
-      )
-    );
   }
 
   onSearchBarValueChange(value: string) {
-    this.searchBarValue = value;
-    this.filterConcerts();
+    this.searchQuery.set(value);
   }
 }

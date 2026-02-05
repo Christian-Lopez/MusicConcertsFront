@@ -7,6 +7,12 @@ import { LoginApiResponse, RegisterRequestBody, ResetPasswordRequestBody } from 
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 
+const CLAIMS = {
+    ROLE: 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role',
+    EMAIL: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
+    NAME: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -76,17 +82,9 @@ export class AuthService {
 
     const jwtDecoded = jwtDecode<any>(token);
 
-    this.role.set(
-      jwtDecoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
-    );
-    this.email.set(
-      jwtDecoded[
-        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
-      ]
-    );
-    this.name.set(
-      jwtDecoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
-    );
+    this.role.set(jwtDecoded[CLAIMS.ROLE]);
+    this.email.set(jwtDecoded[CLAIMS.EMAIL]);
+    this.name.set(jwtDecoded[CLAIMS.NAME]);
 
     this.isLoggedIn.set(true);
   }

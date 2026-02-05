@@ -30,7 +30,7 @@
     </div> -->
 
     <div class="event-list">
-      @if (initialConcerts && initialConcerts.length > 0){
+      @if (sourceConcerts().length > 0){
           @for (concert of concerts(); track concert.id) {
       <app-concert-card appHighlightable [data]="concert" [routerLink]="'/event-detail/' + concert.id"></app-concert-card>
       } @empty {
