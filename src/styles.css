@@ -1,41 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../public/styles/colors.css";
 @import "../public/styles/material.css";
-/* body {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
 
-html {
-  height: 100%;
-} */
-
-/* .box-shadow {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-} */
-/* html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
-
-/* .hidden {
-  visibility: hidden  !important;
-}  */
-
-html,
 body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .hidden {
   visibility: hidden  !important;
-}  
+}
  mat-error{              
         padding-bottom: 10px;
         padding-left: 20px;
         padding-right: 20px;
         text-align: center;
-      }
+}
+  
+/* Global Snackbar Styles */
+.success-snackbar, 
+.error-snackbar {
+    /* Using transform to ensure proper offsetting from top */
+    transform: translateY(90px) !important;
+}
+
+.success-snackbar {
+    --mdc-snackbar-container-color: #4caf50;
+    --mdc-snackbar-supporting-text-color: #ffffff;
+    --mat-snack-bar-button-color: #ffffff;
+}
+
+.error-snackbar {
+    --mdc-snackbar-container-color: #f44336;
+    --mdc-snackbar-supporting-text-color: #ffffff;
+    --mat-snack-bar-button-color: #ffffff;
+}
+
+.success-snackbar .mdc-snackbar__surface, 
+.error-snackbar .mdc-snackbar__surface {
+    transform: scale(1.2); /* Remove !important here to avoid conflict if possible, but keep if needed */
+}
+
+/* Material overrides if needed */
+.success-snackbar .mdc-snackbar__label, 
+.error-snackbar .mdc-snackbar__label {
+    font-size: 1.1rem;
+}
+
+/* Ensure root and page components take full height for sticky footer to work */
+html, body { height: 100%; }
+app-root, app-login, app-home, app-event-detail, .page-container {
+  display: block;
+  height: 100%;
+}
