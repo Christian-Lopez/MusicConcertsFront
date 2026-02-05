@@ -1,1 +1,0 @@
-import{F as e}from"./chunk-WY3PYLKG.js";var r=class t{baseUrl="https://concertsapi.azurewebsites.net/api/";getBaseUrl(){return this.baseUrl}static \u0275fac=function(a){return new(a||t)};static \u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})};export{r as a};

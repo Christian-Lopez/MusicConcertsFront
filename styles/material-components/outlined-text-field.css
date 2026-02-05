@@ -1,0 +1,21 @@
+:root {
+  --mdc-outlined-text-field-input-text-color: white;
+  --mdc-outlined-text-field-label-text-color: var(--primary-color);
+  --mdc-outlined-text-field-focus-label-text-color: var(--primary-color);
+  --mdc-outlined-text-field-outline-color: var(--primary-color);
+  --mdc-outlined-text-field-focus-outline-color: var(--primary-color);
+  --mdc-outlined-text-field-hover-outline-color: var(--primary-color);
+  --mdc-outlined-text-field-hover-label-text-color: white;
+  --mdc-outlined-text-field-disabled-input-text-color: gray;
+  --mdc-outlined-text-field-disabled-label-text-color: gray;
+  /* caret color primary */
+  --mdc-outlined-text-field-caret-color: var(--primary-color);
+}
+
+/* Hide arrows for input number */
+input::-webkit-inner-spin-button {
+  appearance: none;
+}
+.mat-mdc-form-field-text-prefix {
+  color: var(--accent-color);
+}

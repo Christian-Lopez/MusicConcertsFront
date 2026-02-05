@@ -27,27 +27,27 @@
 
   /* added by ChrisL */  
   /* Color text selected option */
-  --mat-select-enabled-trigger-text-color: var(--primary-color);
+  /* --mat-select-enabled-trigger-text-color: var(--primary-color); */
   /* primary color of theme */
-  --mat-sys-primary: var(--primary-color);
+  /* --mat-sys-primary: var(--primary-color); */
   /* background color default form option */
-  --mat-form-field-filled-container-color: var(--secondary-color);
+  /* --mat-form-field-filled-container-color: var(--secondary-color); */
   /* Color of text of select options */
-  --mat-option-label-text-color: var(--primary-color);
+  /* --mat-option-label-text-color: var(--primary-color); */
   /* background color panel select  */
-  --mat-select-panel-background-color: var(--secondary-color);
+  /* --mat-select-panel-background-color: var(--secondary-color); */
   /* Color of arrow in select */
-  --mat-select-enabled-arrow-color: var(--primary-color);
+  /* --mat-select-enabled-arrow-color: var(--primary-color); */
   /* Color of focused arrow in select */
-  --mat-select-focused-arrow-color: white;
+  /* --mat-select-focused-arrow-color: white; */
   /* Color background of selected option */
-  --mat-option-selected-state-label-text-color: var(--accent-color);
+  /* --mat-option-selected-state-label-text-color: var(--accent-color); */
   /* --mat-sys-on-surface : white; */
-  --mdc-selected-item-text-color: white;
+  /* --mdc-selected-item-text-color: white; */
 } 
 
-/*  Override material raised button colors */
-.mat-mdc-raised-button:not(:disabled).mat-primary {
+ /* Override material raised button colors */
+/* .mat-mdc-raised-button:not(:disabled).mat-primary {
   background-color: var(--primary-color);
   color: var(--secondary-color);
   font-weight: bold;
@@ -58,7 +58,7 @@
 }
 .mat-mdc-raised-button:not(:disabled).mat-accent {
   background-color: var(--accent-color);
-}
+} */
 
 
 /*  Override material select check icon color */
@@ -71,15 +71,14 @@
 .form-label-color {
   color: var(--primary-color);
 }
-.form-input-color {
-  /* color: var(--primary-color) !important; */
+.form-input-color {  
   color: white !important;
 }
 
-.mat-mdc-select-value {
+/* .mat-mdc-select-value {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     color:white !important;
-}
+} */
