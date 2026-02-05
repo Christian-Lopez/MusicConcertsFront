@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { NotificationsService } from 'angular2-notifications';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '../../shared/services/auth-service';
 import { MatDialog } from '@angular/material/dialog';
 import { ResetPasswordDialog } from '../reset-password-dialog/reset-password-dialog';
@@ -18,6 +18,7 @@ import { ResetPasswordDialog } from '../reset-password-dialog/reset-password-dia
     ReactiveFormsModule,
     MatButtonModule,
     RouterLink,
+    MatSnackBarModule
   ],
   templateUrl: './forgot-password-form.html',
   styleUrl: './forgot-password-form.css',
@@ -25,7 +26,7 @@ import { ResetPasswordDialog } from '../reset-password-dialog/reset-password-dia
 export class ForgotPasswordForm {
   authService = inject(AuthService);
   matDialog = inject(MatDialog);
-  notifications = inject(NotificationsService);
+  notifications = inject(MatSnackBar);
   sendToken(email: string) {
     this.authService
       .sendTokenToResetPassword(email)
@@ -43,14 +44,14 @@ export class ForgotPasswordForm {
         // });
         next: (res) => {
           if (res.success) {
-            this.notifications.success('Token Sent', 'Check your email.');
+            this.notifications.open('Token Sent. Check your email.', 'Close', { duration: 3000, panelClass: ['success-snackbar'] });
             this.matDialog.open(ResetPasswordDialog, {
               disableClose: true,
               data: { email },
             });
           } else {
             // ⚠️ This ELSE handles server responses that are 200 OK but contain a business error flag (res.success: false)
-            this.notifications.error('Error', res.errorMessage);
+            this.notifications.open(res.errorMessage || 'Error', 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
             console.log(res.errorMessage);
           }
         },
@@ -59,7 +60,7 @@ export class ForgotPasswordForm {
           // We assume the service's catchError already processed the HTTP error into a user-friendly message
           const displayMessage = err.error.errorMessage;
           // const displayMessage = err.message || 'Ocurrió un error desconocido durante el registro.';
-          this.notifications.error('Error de Conexión/Servidor', displayMessage);
+          this.notifications.open(displayMessage, 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
           console.error('HTTP Error during registration:', err);
         },
       });

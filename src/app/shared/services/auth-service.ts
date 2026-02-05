@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Config } from './config';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NotificationsService } from 'angular2-notifications';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginApiResponse, RegisterRequestBody, ResetPasswordRequestBody } from '../models/auth-model';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
@@ -29,7 +29,7 @@ export class AuthService {
   private isLoggedIn = signal(false);
 
   private router = inject(Router);
-  notifications = inject(NotificationsService);
+  notifications = inject(MatSnackBar);
 
   getEmail() {
     return this.email();
@@ -98,10 +98,10 @@ export class AuthService {
     this.isLoggedIn.set(false);
 
     if (tokenExpired) {
-      this.notifications.warn('Token Expired. Please login');
+      this.notifications.open('Token Expired. Please login', 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
       this.router.navigateByUrl('/login');
     } else {
-      this.notifications.success('Logout', '');
+      this.notifications.open('Logout', 'Close', { duration: 3000, panelClass: ['success-snackbar'] });
       this.router.navigateByUrl('/');
     }
   }

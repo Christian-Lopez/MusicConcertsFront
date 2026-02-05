@@ -46,7 +46,7 @@ export class BuyTicket {
 
   buy() {
     if (this.quantity() > this.data.ticketsQuantity) {
-        this.snackBar.open(`Only ${this.data.ticketsQuantity} tickets available.`, 'Close', { duration: 3000 });
+        this.snackBar.open(`Only ${this.data.ticketsQuantity} tickets available.`, 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
         return;
     }
 
@@ -55,17 +55,17 @@ export class BuyTicket {
       .pipe(
         catchError(err => {
           console.error(err);
-          this.snackBar.open(err.error?.errorMessage || 'Error processing purchase', 'Close', { duration: 3000 });
+          this.snackBar.open(err.error?.errorMessage || 'Error processing purchase', 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
           return of(null);
         }),
         finalize(() => this.isBusy.set(false))
       )
       .subscribe(res => {
         if (res && res.success) {
-          this.snackBar.open('Tickets purchased successfully!', 'Close', { duration: 3000 });
+          this.snackBar.open('Tickets purchased successfully!', 'Close', { duration: 3000, panelClass: ['success-snackbar'] });
           this.dialogRef.close(true);
         } else if (res) {
-          this.snackBar.open(res.errorMessage || 'Purchase failed', 'Close', { duration: 3000 });
+          this.snackBar.open(res.errorMessage || 'Purchase failed', 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
         }
       });
   }

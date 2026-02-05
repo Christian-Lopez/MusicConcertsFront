@@ -13,7 +13,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../shared/services/auth-service';
 import { catchError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NotificationsService } from 'angular2-notifications';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-form',
@@ -24,6 +24,7 @@ import { NotificationsService } from 'angular2-notifications';
     ReactiveFormsModule,
     MatButtonModule,
     RouterLink,
+    MatSnackBarModule
   ],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css',
@@ -35,7 +36,7 @@ export class LoginForm {
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
   router = inject(Router);
-  notifications = inject(NotificationsService);
+  notifications = inject(MatSnackBar);
   login() {
     const email = this.loginForm.controls.email.value!;
     const password = this.loginForm.controls.password.value!;
@@ -60,16 +61,16 @@ export class LoginForm {
            localStorage.setItem('token', res.data.token);
            localStorage.setItem('tokenExpiration', res.data.expirationDate);
            this.authService.decodeToken();
-          this.notifications.success('Login sucessfull', 'Loged in');
+           this.notifications.open('Login sucessfull', 'Close', { duration: 3000, panelClass: ['success-snackbar'] });
           this.router.navigateByUrl('/');
         } else {
-          this.notifications.error('Error', res.errorMessage);
+           this.notifications.open(res.errorMessage || 'Error', 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
           console.log(res.errorMessage);
         }
       },
       error: (err) => {
         const displayMessage = 'Error at login ' + err.error.errorMessage;
-        this.notifications.error('Error de Conexión/Servidor', displayMessage);
+        this.notifications.open(displayMessage, 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
         console.error('HTTP Error during login:', err);
       },
     });

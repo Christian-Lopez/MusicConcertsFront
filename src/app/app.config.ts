@@ -8,7 +8,6 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { SimpleNotificationsModule } from 'angular2-notifications';
 import { provideAnimations } from '@angular/platform-browser/animations'; 
 import { jwtInterceptor, tokenExpiredInterceptor  } from './app.interceptor';
 
@@ -19,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([tokenExpiredInterceptor,jwtInterceptor])),
     // provideAnimations(), 
-    importProvidersFrom(SimpleNotificationsModule.forRoot()),
+    provideAnimations(),
   ]
 };
 

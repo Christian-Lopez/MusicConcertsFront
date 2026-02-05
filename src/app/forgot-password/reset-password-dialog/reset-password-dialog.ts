@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth-service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogRef } from '@angular/cdk/dialog';
-import { NotificationsService } from 'angular2-notifications';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordRequestBody } from '../../shared/models/auth-model';
 import { MatInputModule } from "@angular/material/input";
@@ -16,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatButtonModule,],
+    MatButtonModule,
+    MatSnackBarModule],
   templateUrl: './reset-password-dialog.html',
   styleUrl: './reset-password-dialog.css',
 })
@@ -25,7 +26,7 @@ export class ResetPasswordDialog {
   router = inject(Router);
   data = inject(MAT_DIALOG_DATA) as { email: string };
   dialogRef = inject(DialogRef);
-  notifications = inject(NotificationsService);
+  notifications = inject(MatSnackBar);
 
   resetPassword(form: NgForm) {
     const body: ResetPasswordRequestBody = {
@@ -42,17 +43,17 @@ export class ResetPasswordDialog {
     this.authService.resetPassword(body).subscribe({
       next: (res) => {
           if (res.success) {
-            this.notifications.success('Password updated', 'Login');
+            this.notifications.open('Password updated. Login', 'Close', { duration: 3000, panelClass: ['success-snackbar'] });
             this.router.navigateByUrl('/login');
             this.dialogRef.close();
           } else {            
-            this.notifications.error('Error', res.errorMessage);
+            this.notifications.open(res.errorMessage || 'Error', 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
             console.log(res.errorMessage);
           }
         },
         error: (err) => {
           const displayMessage = err.error.errorMessage;          
-          this.notifications.error('Server Error', displayMessage);
+          this.notifications.open(displayMessage, 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
           console.error('HTTP Error during registration:', err);
         },
     });

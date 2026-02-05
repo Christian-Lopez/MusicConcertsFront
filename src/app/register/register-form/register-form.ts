@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../shared/services/auth-service';
-import { NotificationsService } from 'angular2-notifications';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { RegisterRequestBody } from '../../shared/models/auth-model';
 
 import { passwordMatchValidator } from '../../shared/validators/match-password';
@@ -27,6 +27,7 @@ import { passwordMatchValidator } from '../../shared/validators/match-password';
     ReactiveFormsModule,
     MatButtonModule,
     RouterLink,
+    MatSnackBarModule
   ],
   templateUrl: './register-form.html',
   styleUrl: './register-form.css',
@@ -51,7 +52,7 @@ export class RegisterForm {
     }
     
   );
-  notifications = inject(NotificationsService);
+  notifications = inject(MatSnackBar);
 
   register() {
     const body: RegisterRequestBody = {
@@ -68,11 +69,11 @@ export class RegisterForm {
       // 'next' callback: Runs ONLY if the server returns HTTP 200/201
       next: (res) => {
         if (res.success) {
-          this.notifications.success('Registro Exitoso', 'Inicia sesión');
+           this.notifications.open('Registro Exitoso. Inicia sesión', 'Close', { duration: 3000, panelClass: ['success-snackbar'] });
           this.router.navigateByUrl('/login');
         } else {
           // ⚠️ This ELSE handles server responses that are 200 OK but contain a business error flag (res.success: false)
-          this.notifications.error('Error', res.errorMessage);
+           this.notifications.open(res.errorMessage || 'Error', 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
           console.log(res.errorMessage);
         }
       },
@@ -82,7 +83,7 @@ export class RegisterForm {
         // We assume the service's catchError already processed the HTTP error into a user-friendly message
         const displayMessage2 = 'Error at registir ' + err.error.errorMessage;
         // const displayMessage = err.message || 'Ocurrió un error desconocido durante el registro.';
-        this.notifications.error('Error de Conexión/Servidor', displayMessage2);
+        this.notifications.open(displayMessage2, 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
         console.error('HTTP Error during registration:', err);
       },
     });
