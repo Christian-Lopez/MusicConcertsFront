@@ -13,6 +13,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BuyTicket } from '../shared/components/buy-ticket/buy-ticket';
 import { VoucherDialog } from '../shared/components/voucher-dialog/voucher-dialog';
+import confetti from 'canvas-confetti';
+
 
 
 @Component({
@@ -60,6 +62,10 @@ export class EventDetail implements OnInit {
 
     buyDialogRef.afterClosed().subscribe((res) => {
       if (!res) return;
+
+      confetti({
+        zIndex: 1001,
+      });
 
       const voucherDialogRef = this.matDialog.open(VoucherDialog, {
         data: res,
