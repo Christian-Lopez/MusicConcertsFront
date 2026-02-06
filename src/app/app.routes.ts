@@ -3,6 +3,10 @@ import { Home } from './home/home';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { ForgotPassword } from './forgot-password/forgot-password';
+import { EventDetail } from './event-detail/event-detail';
+import { Customer } from './customer/customer';
+import { MyPurchases } from './customer/my-purchases/my-purchases';
+import { ChangePassword } from './customer/change-password/change-password';
 
 export const routes: Routes = [
   {
@@ -33,6 +37,26 @@ export const routes: Routes = [
   {
     path: 'event-detail/:id',
     pathMatch: 'full',
-    loadComponent: () => import('./event-detail/event-detail').then((m) => m.EventDetail),
+    component: EventDetail,
   },
+  {
+    path: 'customer',
+    pathMatch: 'prefix',
+    component: Customer,
+    children: [
+        {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'my-purchases',
+        },
+        {
+            path: 'my-purchases',
+            component: MyPurchases,
+        },
+        {
+            path: 'change-password',
+            component: ChangePassword,
+        },
+    ]
+  }
 ];
