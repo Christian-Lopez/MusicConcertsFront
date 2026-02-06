@@ -4,9 +4,11 @@ import { RouterOutlet } from '@angular/router';
 import { AuthService } from './shared/services/auth-service';
 
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgxSpinnerModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
