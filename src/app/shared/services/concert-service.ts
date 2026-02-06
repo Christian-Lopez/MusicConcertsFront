@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BuyTicketsResponse, GetConcertByIdResponse, GetSaleByIdResponse } from '../models/concert-model';
+import { BuyTicketsResponse, GetConcertByIdResponse, GetSaleByIdResponse, GetPurchasesResponse } from '../models/concert-model';
 import { Config } from './config';
 
 @Injectable({
@@ -26,5 +26,9 @@ export class ConcertService {
 
   getSaleById(saleId: number) {
     return this.http.get<GetSaleByIdResponse>(this.baseUrl + 'sales/?id=' + saleId);
+  }
+
+  getMySales(email: string) {
+    return this.http.get<GetPurchasesResponse>(this.baseUrl + 'sales/Filter?email=' + email);
   }
 }

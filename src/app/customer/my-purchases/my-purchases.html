@@ -1,1 +1,25 @@
-<p>my-purchases works!</p>
+<div class="result-list">
+  @for (item of mySales(); track $index) {
+  <div class="card">
+    <div class="image-wrapper">
+      <img [src]="item.imageUrl" alt="" />
+    </div>
+    <div class="info-wrapper">
+      <div class="header-info">
+        <label for="">NRO OPERACION: {{ item.operationNumber }}</label>
+        <label for="">FECHA DE COMPRA: {{ item.saleDate | date:'dd/MM/yyyy HH:mm' }}</label>
+      </div>
+
+      <div class="main-info">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.dateEvent | date:'dd/MM/yyyy'  }} | {{ item.timeEvent }} | {{ item.genre }}</p>
+      </div>
+
+      <div class="footer-info">
+        <h3>{{ item.total | currency }}</h3>
+        <p>{{ item.quantity }} tickets</p>
+      </div>
+    </div>
+  </div>
+  }
+</div>

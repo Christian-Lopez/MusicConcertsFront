@@ -4,6 +4,12 @@
   justify-content: space-between;
   height: 100%;
 
+  & .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
   & .navigation {
     display: flex;
     justify-content: center;

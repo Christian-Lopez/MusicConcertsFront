@@ -43,3 +43,9 @@ export interface GetSaleByIdResponse {
   success: boolean;
   errorMessage: string;
 }
+
+export interface GetPurchasesResponse {
+  data: Sale[];
+  success: boolean;
+  errorMessage: string;
+}

@@ -3,7 +3,7 @@ import { Config } from './config';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginApiResponse, RegisterRequestBody, ResetPasswordRequestBody } from '../models/auth-model';
+import { LoginApiResponse, RegisterRequestBody, ResetPasswordRequestBody, ChangePasswordRequestBody } from '../models/auth-model';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 
@@ -70,6 +70,10 @@ export class AuthService {
 
   resetPassword(body: ResetPasswordRequestBody):Observable<any> {
     return this.http.post(this.config.getBaseUrl() + 'users/ResetPassword', body);
+  }
+
+  changePassword(body: ChangePasswordRequestBody):Observable<any> {
+    return this.http.post(this.config.getBaseUrl() + 'users/ChangePassword', body);
   }
 
   decodeToken() {

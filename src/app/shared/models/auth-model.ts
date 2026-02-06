@@ -19,8 +19,14 @@ export interface RegisterRequestBody {
 }
 
 export interface ResetPasswordRequestBody {
-  email: string;
   token: string;
   newPassword: string;
   confirmNewPassword: string;
+  email: string;
+}
+
+export interface ChangePasswordRequestBody {
+  email: string;
+  oldPassword: string;
+  newPassword: string;
 }
