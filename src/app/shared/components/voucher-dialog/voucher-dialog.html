@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>VOUCHER</h2>
+  @if(sale){
+  <div class="content">
+    <span class="title">Nro. Operación</span><br />
+    <span>{{ sale.operationNumber }}</span>
+    <br /><br />
+
+    <span class="title">Cliente</span><br />
+    <span>{{ sale.fullName }}</span>
+    <br /><br />
+
+    <span class="title">Nro. Tickets</span><br />
+    <span>{{ sale.quantity }}</span>
+    <br /><br />
+
+    <span class="title">Fecha de pago</span><br />
+    <span>{{ sale.saleDate }}</span>
+    <br /><br />
+  </div>
+  <span class="total">
+    Total: <span>S/ {{ sale.total.toFixed(2) }}</span>
+  </span>
+  }
+</div>

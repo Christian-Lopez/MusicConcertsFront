@@ -63,7 +63,7 @@ export class BuyTicket {
       .subscribe(res => {
         if (res && res.success) {
           this.snackBar.open('Tickets purchased successfully!', 'Close', { duration: 3000, panelClass: ['success-snackbar'] });
-          this.dialogRef.close(true);
+          this.dialogRef.close(res.data);
         } else if (res) {
           this.snackBar.open(res.errorMessage || 'Purchase failed', 'Close', { duration: 3000, panelClass: ['error-snackbar'] });
         }

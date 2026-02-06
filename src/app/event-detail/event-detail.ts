@@ -12,6 +12,7 @@ import { catchError, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BuyTicket } from '../shared/components/buy-ticket/buy-ticket';
+import { VoucherDialog } from '../shared/components/voucher-dialog/voucher-dialog';
 
 
 @Component({
@@ -53,8 +54,20 @@ export class EventDetail implements OnInit {
   }
 
   openBuyDialog() {
-    this.matDialog.open(BuyTicket, {
+    const buyDialogRef = this.matDialog.open(BuyTicket, {
       data: this.concert,
+    });
+
+    buyDialogRef.afterClosed().subscribe((res) => {
+      if (!res) return;
+
+      const voucherDialogRef = this.matDialog.open(VoucherDialog, {
+        data: res,
+      });
+
+      voucherDialogRef.afterClosed().subscribe(() => {
+        this.router.navigateByUrl('/');
+      });
     });
   }
 }
